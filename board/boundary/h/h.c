@@ -114,20 +114,6 @@ struct i2c_pads_info i2c_pad_info0 = {
 	}
 };
 
-/* I2C2 Camera, MIPI */
-struct i2c_pads_info i2c_pad_info1 = {
-	.scl = {
-		.i2c_mode = PC(MX6_PAD_KEY_COL3__I2C2_SCL),
-		.gpio_mode = PC(MX6_PAD_KEY_COL3__GPIO_4_12),
-		.gp = IMX_GPIO_NR(4, 12)
-	},
-	.sda = {
-		.i2c_mode = PC(MX6_PAD_KEY_ROW3__I2C2_SDA),
-		.gpio_mode = PC(MX6_PAD_KEY_ROW3__GPIO_4_13),
-		.gp = IMX_GPIO_NR(4, 13)
-	}
-};
-
 /* I2C3, J15 - RGB connector */
 struct i2c_pads_info i2c_pad_info2 = {
 	.scl = {
@@ -675,7 +661,6 @@ int board_init(void)
 	gpio_direction_output(IMX_GPIO_NR(3,20),0);
 	gpio_direction_output(IMX_GPIO_NR(2,23),1); /* enable RTC */
 	setup_i2c(0, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info0);
-	setup_i2c(1, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info1);
 	setup_i2c(2, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info2);
 
 #ifdef CONFIG_CMD_SATA
@@ -687,7 +672,7 @@ int board_init(void)
 
 int checkboard(void)
 {
-	puts("Board: Boundary mx6h\n");
+	puts("Board: Boundary H\n");
 
 	return 0;
 }
